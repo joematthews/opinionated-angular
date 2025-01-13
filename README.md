@@ -15,6 +15,7 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 - [Key Features](#key-features)
   - [Accessibility (a11y)](#accessibility-a11y)
   - [Internationalization (i18n)](#internationalization-i18n)
+  - [Angular Material & Dark Theme](#angular-material--dark-theme)
   - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
   - [Typescript](#typescript)
   - [Prettier](#prettier)
@@ -22,6 +23,7 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
   - [Code Spell Checker](#code-spell-checker)
+  - [Commitlint](#commitlint)
   - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
@@ -88,6 +90,16 @@ To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` wi
 
 > [!NOTE]
 > Saving a document using VSCode will automatically add missing `i18n` attributes using `eslint --fix`.
+
+### Angular Material & Dark Theme
+
+Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS. _The default theme is dark._
+
+Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
+
+Downloads the [Roboto font](https://fonts.google.com/specimen/Roboto) from the Google font api in the [index.html file](./src/index.html). The font is set in the [styles.scss file](./src/styles.scss).
+
+Enables [Animations](https://angular.io/guide/animations) for Angular Material and custom components.
 
 ### Server-side-rendering & Pre-rendering
 
@@ -178,9 +190,13 @@ I highly recommend installing [Code Spell Checker for VSCode](https://marketplac
 
 Use `npm run check-spelling` to look for misspelled words in the project.
 
+### Commitlint
+
+Uses [Commitlint](https://commitlint.js.org/#/) and [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) to enforce good commit messages. Commitlint can be configured in [commitlint.config.js](./commitlint.config.js).
+
 ### Husky & Lint-staged
 
-Uses [Husky](https://typicode.github.io/husky/) to manage the [pre-commit](.husky/pre-commit) and [pre-push](.husky/pre-push) git hooks.
+Uses [Husky](https://typicode.github.io/husky/) to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), [prepare-commit-msg](.husky/prepare-commit-msg), and [commit-msg](.husky/commit-msg) git hooks.
 
 Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
