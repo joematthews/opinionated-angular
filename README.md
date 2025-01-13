@@ -14,7 +14,6 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 - [Installation & Starting](#installation--starting)
 - [Key Features](#key-features)
   - [Accessibility (a11y)](#accessibility-a11y)
-  - [Internationalization (i18n)](#internationalization-i18n)
   - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
   - [Typescript](#typescript)
   - [Prettier](#prettier)
@@ -88,18 +87,6 @@ To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` wi
 
 > [!NOTE]
 > Saving a document using VSCode will automatically add missing `i18n` attributes using `eslint --fix`.
-
-### Server-side-rendering & Pre-rendering
-
-Enables [Server-side-rendering and pre-rendering](https://angular.io/guide/ssr) to improve SEO and user experience. To start the SSR server run the following commands:
-
-```sh
-npm run build
-npm run serve:ssr:new_project_name
-```
-
-> [!NOTE]
-> Replace `new_project_name` above with the name of your project.
 
 ### Typescript
 
