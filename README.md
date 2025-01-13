@@ -15,7 +15,6 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
 - [Key Features](#key-features)
   - [Accessibility (a11y)](#accessibility-a11y)
   - [Internationalization (i18n)](#internationalization-i18n)
-  - [Angular Material & Dark Theme](#angular-material--dark-theme)
   - [Server-side-rendering & Pre-rendering](#server-side-rendering--pre-rendering)
   - [Typescript](#typescript)
   - [Prettier](#prettier)
@@ -23,12 +22,10 @@ You can run and explore extreme-angular on StackBlitz: https://stackblitz.com/gi
   - [Stylelint](#stylelint)
   - [VSCode](#vscode)
   - [Code Spell Checker](#code-spell-checker)
-  - [Commitizen & Commitlint](#commitizen--commitlint)
   - [Husky & Lint-Staged](#husky--lint-staged)
   - [Notes directory](#notes-directory)
 - [Updating](#updating)
 - [Tips & Tricks](#tips--tricks)
-  - [NestJS](#nestjs)
   - [Inlay Hints](#inlay-hints)
   - [Font Ligatures](#font-ligatures)
   - [Catppuccin](#catppuccin)
@@ -63,15 +60,15 @@ The goal of these changes is to enforce 'best practices' while still being 100% 
 
 ### Accessibility (a11y)
 
-extreme-angular enables _all_ of the accessibility rules from [angular-eslint](https://github.com/angular-eslint/angular-eslint) by default including image alt text, form labels, no autofocus, valid ARIA, and more.
+extreme-angular enables _all_ the accessibility rules from [angular-eslint](https://github.com/angular-eslint/angular-eslint) by default including image alt text, form labels, no autofocus, valid ARIA, and more.
 
 In my experience these rules are easy to work with if enabled _early_ in the development process and early adoption of these rules is also very helpful for avoiding common accessibility anti-patterns.
 
-If you run into a problem with any of these accessibility rules I encourage you to open up an [issue](https://github.com/joematthews/extreme-angular/issues) so we can troubleshoot the the errors or concerns together.
+If you run into a problem with any of these accessibility rules I encourage you to open up an [issue](https://github.com/joematthews/extreme-angular/issues) so we can troubleshoot the errors or concerns together.
 
 For a full list of accessibility-centric rules, check out the [angular-eslint template rules](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/README.md)
 
-The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular and it provides resources on the topic of accessibility.
+The [Accessibility in Angular guide](https://angular.io/guide/accessibility) is a great place to start learning about accessibility in Angular, and it provides resources on the topic of accessibility.
 
 Please let me know if more can be done to improve the accessibility of extreme-angular by creating an issue. Thank you.
 
@@ -81,7 +78,7 @@ Enables [Internationalization](https://angular.io/guide/i18n-overview) and requi
 
 Although you may not require internationalization capabilities right now, adding `i18n` attributes as-you-go may make it less painful to use internationalization in the future.
 
-To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` within the `*.html` section of the [.eslintrc.json file](./.eslintrc.json):
+To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` within the `*.html` section of the [eslint.config.js file](./eslint.config.js):
 
 ```
 "rules": {
@@ -91,16 +88,6 @@ To disable i18n enforcement, set `"@angular-eslint/template/i18n"` to `"off"` wi
 
 > [!NOTE]
 > Saving a document using VSCode will automatically add missing `i18n` attributes using `eslint --fix`.
-
-### Angular Material & Dark Theme
-
-Enables [Angular Material](https://material.angular.io/guide/getting-started) and uses a [dark theme](./src/theme.scss) that automatically switches from dark to light based on the light/dark preference set in the OS. _The default theme is dark._
-
-Changes `density` to `-2` to make the UI (including buttons) more compact and more inline with web expectations.
-
-Downloads the [Roboto font](https://fonts.google.com/specimen/Roboto) from the Google font api in the [index.html file](./src/index.html). The font is set in the [styles.scss file](./src/styles.scss).
-
-Enables [Animations](https://angular.io/guide/animations) for Angular Material and custom components.
 
 ### Server-side-rendering & Pre-rendering
 
@@ -125,7 +112,7 @@ Adds the following compiler options to the [tsconfig.json file](./tsconfig.json)
 
 ### Prettier
 
-Uses [Prettier](https://prettier.io/) to provide opinionated formatting so diffs contain less formatting changes and teams argue less about formatting in general.
+Uses [Prettier](https://prettier.io/) to provide opinionated formatting so diffs contain less formatting changes and teams argue less about code style in general.
 
 In the [.prettierrc.json file](./.prettierrc.json), `htmlWhitespaceSensitivity` is set to `ignore` to improve the formatting of templates. This will trim whitespace around and inside elements. Use `&nbsp;` (non-breaking space) to explicitly enforce spacing between inline-elements.
 
@@ -142,7 +129,7 @@ Use `npm run format` to format all relevant files within the project.
 
 ### Eslint
 
-The [.eslintrc.json file](./.eslintrc.json) is set up to use overrides for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
+The [eslint.config.js file](./eslint.config.js) is set up to use overrides for each of the following file types: \*.js, \*.ts, \*spec.ts, \*.html, \*.json, and \*.md.
 
 To help ensure all project files are linted, the following eslint plugins are used:
 
@@ -191,28 +178,9 @@ I highly recommend installing [Code Spell Checker for VSCode](https://marketplac
 
 Use `npm run check-spelling` to look for misspelled words in the project.
 
-### Commitizen & Commitlint
-
-Uses [Commitizen](https://commitizen.github.io/cz-cli) to suggest consistent formatting of commit messages.
-
-On `git commit`, a interactive prompt will appear:
-
-```
-? Select the type of change that you're committing: (Use arrow keys)
-❯ feat:     A new feature
-  fix:      A bug fix
-  docs:     Documentation only changes
-  style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-  refactor: A code change that neither fixes a bug nor adds a feature
-  perf:     A code change that improves performance
-  test:     Adding missing tests or correcting existing tests
-```
-
-Uses [Commitlint](https://commitlint.js.org/#/) and [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) to enforce good commit messages. Commitlint can be configured in [commitlint.config.js](./commitlint.config.js).
-
 ### Husky & Lint-staged
 
-Uses [Husky](https://typicode.github.io/husky/) to manage the [pre-commit](.husky/pre-commit), [pre-push](.husky/pre-push), [prepare-commit-msg](.husky/prepare-commit-msg), and [commit-msg](.husky/commit-msg) git hooks.
+Uses [Husky](https://typicode.github.io/husky/) to manage the [pre-commit](.husky/pre-commit) and [pre-push](.husky/pre-push) git hooks.
 
 Uses [Lint-staged](https://www.npmjs.com/package/lint-staged) to run prettier, eslint, stylelint, cspell, and [tsc-files](https://www.npmjs.com/package/tsc-files) against all staged files before committing to git.
 
@@ -228,14 +196,14 @@ This may be useful for keeping personal markdown files for notes or reference in
 
 - Notes about clients
 - Todo lists
-- Code snippets & notebooks (iTypescript, tslab, etc)
+- Code snippets & notebooks
 
 ## Updating
 
 > [!CAUTION]
 > Depending on the maturity of your project, it may be better to look at the [release notes](https://github.com/joematthews/extreme-angular/releases) and [commits](https://github.com/joematthews/extreme-angular/commits/main/) and manually make changes instead of merging. If the Angular version has changed, then follow the [instructions to update Angular](https://angular.io/guide/updating) first before attempting to merge or make changes.
 
-To pull in the latest changes, I recommend checking out a 'update' branch and merging the latest changes from `upstream/main`:
+To pull in the latest changes, I recommend checking out an 'update' branch and merging the latest changes from `upstream/main`:
 
 ```sh
 git checkout main && git pull
@@ -325,4 +293,4 @@ Catppuccin has 4 flavours: 🌻 Latte, 🪴 Frappé, 🌺 Macchiato, & 🌿 Moch
 
 VSCode has two extensions: [Catppuccin for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc) and [Catppuccin Icons for VSCode](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc-icons).
 
-My favorite is 🪴 Frappé.
+My favorite is 🌿 Mocha.
